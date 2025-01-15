@@ -6,66 +6,195 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>879</width>
+    <height>650</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>OnlineMusicWidget</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton_Min">
+   <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>150</y>
-      <width>93</width>
-      <height>28</height>
+      <x>10</x>
+      <y>60</y>
+      <width>114</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>搜索歌曲名称：</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_CUi">
+   <widget class="QLineEdit" name="lineEdit">
     <property name="geometry">
      <rect>
-      <x>440</x>
-      <y>150</y>
-      <width>93</width>
-      <height>28</height>
+      <x>130</x>
+      <y>60</y>
+      <width>611</width>
+      <height>41</height>
      </rect>
     </property>
-    <property name="text">
-     <string>PushButton</string>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+      <bold>true</bold>
+     </font>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_Close">
+   <widget class="QPushButton" name="pushButton_2">
     <property name="geometry">
      <rect>
-      <x>580</x>
-      <y>150</y>
-      <width>93</width>
-      <height>28</height>
+      <x>750</x>
+      <y>60</y>
+      <width>111</width>
+      <height>41</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>搜索</string>
     </property>
    </widget>
+   <widget class="QGroupBox" name="groupBox">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>50</y>
+      <width>861</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255,255,255);
+background-color: rgba(255,255,255,50);</string>
+    </property>
+    <property name="title">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>730</x>
+      <y>0</y>
+      <width>151</width>
+      <height>43</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="pushButton_Min">
+       <property name="styleSheet">
+        <string notr="true">QPushButton
+{
+border-radius:0px;
+background-image:url(:/image/image/image/quit.png);
+background-repeat:np-repeat;
+border:none;
+background-positio:center center;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="images.qrc">
+         <normaloff>:/new/prefix1/Images/about.png</normaloff>:/new/prefix1/Images/about.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_CUi">
+       <property name="styleSheet">
+        <string notr="true">QPushButton
+{
+border-radius:0px;
+background-image:url(:/image/image/image/quit.png);
+background-repeat:np-repeat;
+border:none;
+background-positio:center center;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="images.qrc">
+         <normaloff>:/new/prefix1/Images/skin.png</normaloff>:/new/prefix1/Images/skin.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_Close">
+       <property name="styleSheet">
+        <string notr="true">QPushButton
+{
+border-radius:0px;
+background-repeat:np-repeat;
+border:none;
+background-positio:center center;
+}
+QPushButton:hover {
+    background-color: red;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="images.qrc">
+         <normaloff>:/new/prefix1/Images/quit.png</normaloff>:/new/prefix1/Images/quit.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <zorder>pushButton_Min</zorder>
+   <zorder>pushButton_CUi</zorder>
+   <zorder>pushButton_Close</zorder>
+   <zorder>groupBox</zorder>
+   <zorder>pushButton</zorder>
+   <zorder>pushButton_2</zorder>
+   <zorder>lineEdit</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>879</width>
      <height>25</height>
     </rect>
    </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="images.qrc"/>
+ </resources>
  <connections/>
 </ui>

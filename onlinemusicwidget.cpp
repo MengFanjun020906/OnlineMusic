@@ -10,8 +10,9 @@ OnlineMusicWidget::OnlineMusicWidget(QWidget *parent)
     ui->setupUi(this);
 
     //禁止窗口改变尺寸
-
+    this->setFixedSize(this->geometry().size());
     //去掉窗口标题
+    this->setWindowFlag(Qt::FramelessWindowHint);
 }
 
 OnlineMusicWidget::~OnlineMusicWidget()
@@ -27,3 +28,10 @@ void OnlineMusicWidget:: paintEvent(QPaintEvent *event)
     //更改背景图片
     painter.drawPixmap(0,0,width(),height(),QPixmap(":/new/prefix1/Images/musicplayer_ui.png"));
 }
+
+void OnlineMusicWidget::on_pushButton_Close_clicked()
+{
+    //关闭窗口
+    close();
+}
+

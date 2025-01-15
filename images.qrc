@@ -8,5 +8,6 @@
         <file>Images/pase-hover.png</file>
         <file>Images/pre-hover.png</file>
         <file>Images/skin.png</file>
+        <file>Images/quit.png</file>
     </qresource>
 </RCC>
