@@ -17,6 +17,9 @@ public:
     OnlineMusicWidget(QWidget *parent = nullptr);
     ~OnlineMusicWidget();
 
+    //处理播放器背景画布
+    void paintEvent(QPaintEvent *event);
+
 private:
     Ui::OnlineMusicWidget *ui;
 };
