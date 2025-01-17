@@ -13,7 +13,11 @@
 //#include <QMediaPlaylist>
 #include <QSqlDatabase>
 #include <QSqlQuery>
-
+#include <QSqlError>
+#include <QMessageBox>
+#include <QTime>
+#include<math.h>
+#include <QMouseEvent>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -37,5 +41,38 @@ private slots:
 
 private:
     Ui::OnlineMusicWidget *ui;
+
+
+protected:
+    //音乐歌曲下载和播放
+    void DownloadPlayer(QString album_id,QString hash);
+
+    //访问HTTP网页
+    void HttpAccessFunc(QString);
+
+    //音乐的hash和ablum_id值解析(使用JSON)
+    void HashJsonAnalysis(QByteArray);
+
+    //搜索音乐数据信息的JSON解析，解析真是的音乐文件和歌词
+    QString MusicJsonAnalysis(QByteArray);
+
+protected:
+    // 鼠标拖动窗口实现移动
+    void mouseMoveEvent(QMouseEvent *et);//移动事件
+    void mousePressEvent(QMouseEvent *et);//按住事件
+    void mouseReleaseEvent(QMouseEvent *et);//释放时间
+
+private:
+    //定义坐标
+    QPoint m_mousepoint;
+    QPoint movepoint;
+    bool mousepress;
+
+
+
 };
+
+
+
+
 #endif // ONLINEMUSICWIDGET_H

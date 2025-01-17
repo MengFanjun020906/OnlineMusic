@@ -9,5 +9,11 @@
         <file>Images/pre-hover.png</file>
         <file>Images/skin.png</file>
         <file>Images/quit.png</file>
+        <file>Images/MAddSong.png</file>
+        <file>Images/MNoSound.png</file>
+        <file>Images/MOpenSong.png</file>
+        <file>Images/MSound.png</file>
+        <file>Images/MPlay.png</file>
+        <file>Images/MStops.png</file>
     </qresource>
 </RCC>

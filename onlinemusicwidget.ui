@@ -6,67 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>879</width>
-    <height>650</height>
+    <width>916</width>
+    <height>674</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>OnlineMusicWidget</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>60</y>
-      <width>114</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>搜索歌曲名称：</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit">
-    <property name="geometry">
-     <rect>
-      <x>130</x>
-      <y>60</y>
-      <width>611</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>11</pointsize>
-      <bold>true</bold>
-     </font>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_2">
-    <property name="geometry">
-     <rect>
-      <x>750</x>
-      <y>60</y>
-      <width>111</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>搜索</string>
-    </property>
-   </widget>
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>50</y>
-      <width>861</width>
+      <x>10</x>
+      <y>40</y>
+      <width>881</width>
       <height>61</height>
      </rect>
     </property>
@@ -77,6 +30,260 @@ background-color: rgba(255,255,255,50);</string>
     <property name="title">
      <string/>
     </property>
+    <widget class="QPushButton" name="pushButton_SearchSong">
+     <property name="geometry">
+      <rect>
+       <x>760</x>
+       <y>10</y>
+       <width>111</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>搜索</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit_InputSong">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>10</y>
+       <width>611</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>11</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_St">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>114</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>搜索歌曲名称：</string>
+     </property>
+     <property name="autoDefault">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>100</y>
+      <width>881</width>
+      <height>381</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>在线音乐列表</string>
+    </property>
+    <widget class="QPlainTextEdit" name="plainTextEdit_SongList">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>20</y>
+       <width>821</width>
+       <height>351</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QSlider" name="horizontalSlider_PlayProgress">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>510</y>
+      <width>651</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLCDNumber" name="lcdNumber_PlayTime">
+    <property name="geometry">
+     <rect>
+      <x>780</x>
+      <y>500</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_3">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>490</y>
+      <width>881</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string/>
+    </property>
+    <widget class="QSlider" name="horizontalSlider_Volume">
+     <property name="geometry">
+      <rect>
+       <x>590</x>
+       <y>60</y>
+       <width>121</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_PlaySong">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>50</y>
+       <width>51</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="images.qrc">
+       <normaloff>:/new/prefix1/Images/MPlay.png</normaloff>:/new/prefix1/Images/MPlay.png</iconset>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_PauseSong">
+     <property name="geometry">
+      <rect>
+       <x>180</x>
+       <y>50</y>
+       <width>51</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="images.qrc">
+       <normaloff>:/new/prefix1/Images/pase-hover.png</normaloff>:/new/prefix1/Images/pase-hover.png</iconset>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_StopPlaySong">
+     <property name="geometry">
+      <rect>
+       <x>270</x>
+       <y>50</y>
+       <width>51</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_AddSong">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>50</y>
+       <width>51</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="images.qrc">
+       <normaloff>:/new/prefix1/Images/MOpenSong.png</normaloff>:/new/prefix1/Images/MOpenSong.png</iconset>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_PreviousSong">
+     <property name="geometry">
+      <rect>
+       <x>340</x>
+       <y>50</y>
+       <width>51</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="images.qrc">
+       <normaloff>:/new/prefix1/Images/MStops.png</normaloff>:/new/prefix1/Images/MStops.png</iconset>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_NextSong">
+     <property name="geometry">
+      <rect>
+       <x>420</x>
+       <y>50</y>
+       <width>51</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="images.qrc">
+       <normaloff>:/new/prefix1/Images/pre-hover.png</normaloff>:/new/prefix1/Images/pre-hover.png</iconset>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_NextSong_2">
+     <property name="geometry">
+      <rect>
+       <x>500</x>
+       <y>50</y>
+       <width>51</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="images.qrc">
+       <normaloff>:/new/prefix1/Images/next-hover.png</normaloff>:/new/prefix1/Images/next-hover.png</iconset>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_SoundYesNo">
+     <property name="geometry">
+      <rect>
+       <x>770</x>
+       <y>40</y>
+       <width>51</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="images.qrc">
+       <normaloff>:/new/prefix1/Images/MSound.png</normaloff>:/new/prefix1/Images/MSound.png</iconset>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="">
     <property name="geometry">
@@ -89,7 +296,7 @@ background-color: rgba(255,255,255,50);</string>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QPushButton" name="pushButton_Min">
+      <widget class="QPushButton" name="pushButton_About">
        <property name="styleSheet">
         <string notr="true">QPushButton
 {
@@ -173,20 +380,21 @@ QPushButton:hover {
      </item>
     </layout>
    </widget>
-   <zorder>pushButton_Min</zorder>
+   <zorder>groupBox_3</zorder>
+   <zorder>groupBox_2</zorder>
+   <zorder>pushButton_About</zorder>
    <zorder>pushButton_CUi</zorder>
    <zorder>pushButton_Close</zorder>
    <zorder>groupBox</zorder>
-   <zorder>pushButton</zorder>
-   <zorder>pushButton_2</zorder>
-   <zorder>lineEdit</zorder>
+   <zorder>horizontalSlider_PlayProgress</zorder>
+   <zorder>lcdNumber_PlayTime</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>879</width>
+     <width>916</width>
      <height>25</height>
     </rect>
    </property>
