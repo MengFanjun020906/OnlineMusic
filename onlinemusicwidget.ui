@@ -44,6 +44,20 @@ background-color: rgba(255,255,255,50);</string>
        <pointsize>12</pointsize>
       </font>
      </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton
+{
+border-radius:0px;
+background-image:url(:/image/image/image/quit.png);
+background-repeat:np-repeat;
+border:none;
+background-positio:center center;
+color:balck;
+}</string>
+     </property>
      <property name="text">
       <string>搜索</string>
      </property>
@@ -63,6 +77,19 @@ background-color: rgba(255,255,255,50);</string>
        <bold>true</bold>
       </font>
      </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton
+{
+border-radius:0px;
+background-image:url(:/image/image/image/quit.png);
+background-repeat:np-repeat;
+border:none;
+background-positio:center center;
+}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
     </widget>
     <widget class="QPushButton" name="pushButton_St">
      <property name="geometry">
@@ -72,6 +99,18 @@ background-color: rgba(255,255,255,50);</string>
        <width>114</width>
        <height>41</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton
+{
+border-radius:0px;
+background-image:url(:/image/image/image/quit.png);
+background-repeat:np-repeat;
+border:none;
+background-positio:center center;
+color:balck;
+
+}</string>
      </property>
      <property name="text">
       <string>搜索歌曲名称：</string>
@@ -90,6 +129,13 @@ background-color: rgba(255,255,255,50);</string>
       <height>381</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QGroupBox
+{
+font-size:14px;
+color:black;
+}</string>
+    </property>
     <property name="title">
      <string>在线音乐列表</string>
     </property>
@@ -101,6 +147,11 @@ background-color: rgba(255,255,255,50);</string>
        <width>821</width>
        <height>351</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font-size:14px;
+color:rgb(255,255,255);
+background-color:rgba(255,255,255,150);</string>
      </property>
     </widget>
    </widget>
@@ -115,16 +166,6 @@ background-color: rgba(255,255,255,50);</string>
     </property>
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
-    </property>
-   </widget>
-   <widget class="QLCDNumber" name="lcdNumber_PlayTime">
-    <property name="geometry">
-     <rect>
-      <x>780</x>
-      <y>500</y>
-      <width>71</width>
-      <height>31</height>
-     </rect>
     </property>
    </widget>
    <widget class="QGroupBox" name="groupBox_3">
@@ -143,8 +184,8 @@ background-color: rgba(255,255,255,50);</string>
      <property name="geometry">
       <rect>
        <x>590</x>
-       <y>60</y>
-       <width>121</width>
+       <y>70</y>
+       <width>181</width>
        <height>20</height>
       </rect>
      </property>
@@ -152,129 +193,26 @@ background-color: rgba(255,255,255,50);</string>
       <enum>Qt::Horizontal</enum>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_PlaySong">
-     <property name="geometry">
-      <rect>
-       <x>90</x>
-       <y>50</y>
-       <width>51</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="images.qrc">
-       <normaloff>:/new/prefix1/Images/MPlay.png</normaloff>:/new/prefix1/Images/MPlay.png</iconset>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pushButton_PauseSong">
-     <property name="geometry">
-      <rect>
-       <x>180</x>
-       <y>50</y>
-       <width>51</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="images.qrc">
-       <normaloff>:/new/prefix1/Images/pase-hover.png</normaloff>:/new/prefix1/Images/pase-hover.png</iconset>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pushButton_StopPlaySong">
-     <property name="geometry">
-      <rect>
-       <x>270</x>
-       <y>50</y>
-       <width>51</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pushButton_AddSong">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>50</y>
-       <width>51</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="images.qrc">
-       <normaloff>:/new/prefix1/Images/MOpenSong.png</normaloff>:/new/prefix1/Images/MOpenSong.png</iconset>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pushButton_PreviousSong">
-     <property name="geometry">
-      <rect>
-       <x>340</x>
-       <y>50</y>
-       <width>51</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="images.qrc">
-       <normaloff>:/new/prefix1/Images/MStops.png</normaloff>:/new/prefix1/Images/MStops.png</iconset>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pushButton_NextSong">
-     <property name="geometry">
-      <rect>
-       <x>420</x>
-       <y>50</y>
-       <width>51</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="images.qrc">
-       <normaloff>:/new/prefix1/Images/pre-hover.png</normaloff>:/new/prefix1/Images/pre-hover.png</iconset>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pushButton_NextSong_2">
-     <property name="geometry">
-      <rect>
-       <x>500</x>
-       <y>50</y>
-       <width>51</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="images.qrc">
-       <normaloff>:/new/prefix1/Images/next-hover.png</normaloff>:/new/prefix1/Images/next-hover.png</iconset>
-     </property>
-    </widget>
     <widget class="QPushButton" name="pushButton_SoundYesNo">
      <property name="geometry">
       <rect>
-       <x>770</x>
-       <y>40</y>
-       <width>51</width>
-       <height>51</height>
+       <x>790</x>
+       <y>50</y>
+       <width>61</width>
+       <height>61</height>
       </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton
+{
+border-radius:0px;
+background-repeat:np-repeat;
+border:none;
+background-positio:center center;
+}</string>
      </property>
      <property name="text">
       <string/>
@@ -283,12 +221,217 @@ background-color: rgba(255,255,255,50);</string>
       <iconset resource="images.qrc">
        <normaloff>:/new/prefix1/Images/MSound.png</normaloff>:/new/prefix1/Images/MSound.png</iconset>
      </property>
+     <property name="iconSize">
+      <size>
+       <width>32</width>
+       <height>32</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QLCDNumber" name="lcdNumber_PlayTime">
+     <property name="geometry">
+      <rect>
+       <x>750</x>
+       <y>10</y>
+       <width>81</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="lineWidth">
+      <number>0</number>
+     </property>
+    </widget>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>60</y>
+       <width>541</width>
+       <height>34</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QPushButton" name="pushButton_AddSong">
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton
+{
+border-radius:0px;
+background-repeat:np-repeat;
+border:none;
+background-positio:center center;
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="images.qrc">
+          <normaloff>:/new/prefix1/Images/MOpenSong.png</normaloff>:/new/prefix1/Images/MOpenSong.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_PlaySong">
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton
+{
+border-radius:0px;
+background-repeat:np-repeat;
+border:none;
+background-positio:center center;
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="images.qrc">
+          <normaloff>:/new/prefix1/Images/MPlay.png</normaloff>:/new/prefix1/Images/MPlay.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_PauseSong">
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton
+{
+border-radius:0px;
+background-repeat:np-repeat;
+border:none;
+background-positio:center center;
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="images.qrc">
+          <normaloff>:/new/prefix1/Images/pase-hover.png</normaloff>:/new/prefix1/Images/pase-hover.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_PreviousSong">
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton
+{
+border-radius:0px;
+background-repeat:np-repeat;
+border:none;
+background-positio:center center;
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="images.qrc">
+          <normaloff>:/new/prefix1/Images/MStops.png</normaloff>:/new/prefix1/Images/MStops.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_NextSong">
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton
+{
+border-radius:0px;
+background-repeat:np-repeat;
+border:none;
+background-positio:center center;
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="images.qrc">
+          <normaloff>:/new/prefix1/Images/pre-hover.png</normaloff>:/new/prefix1/Images/pre-hover.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_NextSong_2">
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton
+{
+border-radius:0px;
+background-repeat:np-repeat;
+border:none;
+background-positio:center center;
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="images.qrc">
+          <normaloff>:/new/prefix1/Images/next-hover.png</normaloff>:/new/prefix1/Images/next-hover.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </widget>
    <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
-      <x>730</x>
+      <x>770</x>
       <y>0</y>
       <width>151</width>
       <height>43</height>
@@ -297,11 +440,13 @@ background-color: rgba(255,255,255,50);</string>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QPushButton" name="pushButton_About">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
        <property name="styleSheet">
         <string notr="true">QPushButton
 {
 border-radius:0px;
-background-image:url(:/image/image/image/quit.png);
 background-repeat:np-repeat;
 border:none;
 background-positio:center center;
@@ -324,11 +469,13 @@ background-positio:center center;
      </item>
      <item>
       <widget class="QPushButton" name="pushButton_CUi">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
        <property name="styleSheet">
         <string notr="true">QPushButton
 {
 border-radius:0px;
-background-image:url(:/image/image/image/quit.png);
 background-repeat:np-repeat;
 border:none;
 background-positio:center center;
@@ -351,6 +498,9 @@ background-positio:center center;
      </item>
      <item>
       <widget class="QPushButton" name="pushButton_Close">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
        <property name="styleSheet">
         <string notr="true">QPushButton
 {
@@ -359,8 +509,9 @@ background-repeat:np-repeat;
 border:none;
 background-positio:center center;
 }
-QPushButton:hover {
-    background-color: red;
+QPushButton:hover
+{
+background-color:red;
 }</string>
        </property>
        <property name="text">
@@ -387,7 +538,6 @@ QPushButton:hover {
    <zorder>pushButton_Close</zorder>
    <zorder>groupBox</zorder>
    <zorder>horizontalSlider_PlayProgress</zorder>
-   <zorder>lcdNumber_PlayTime</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

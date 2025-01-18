@@ -18,7 +18,8 @@
 #include <QTime>
 #include<math.h>
 #include <QMouseEvent>
-
+#include <QMessageBox>
+#include <aboutdialog.h>
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class OnlineMusicWidget;
@@ -38,6 +39,24 @@ public:
 
 private slots:
     void on_pushButton_Close_clicked();
+
+    void on_pushButton_AddSong_clicked();
+
+    void on_pushButton_PlaySong_clicked();
+
+    void on_pushButton_PauseSong_clicked();
+
+    void on_pushButton_StopPlaySong_clicked();
+
+    void on_pushButton_PreviousSong_clicked();
+
+    void on_pushButton_NextSong_clicked();
+
+    void on_pushButton_NextSong_2_clicked();
+
+    void on_pushButton_SoundYesNo_clicked();
+
+    void on_pushButton_About_clicked();
 
 private:
     Ui::OnlineMusicWidget *ui;
