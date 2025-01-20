@@ -11,11 +11,13 @@ CONFIG += c++17
 SOURCES += \
     aboutdialog.cpp \
     main.cpp \
-    onlinemusicwidget.cpp
+    onlinemusicwidget.cpp \
+    playlist.cpp
 
 HEADERS += \
     aboutdialog.h \
-    onlinemusicwidget.h
+    onlinemusicwidget.h \
+    playlist.h
 
 FORMS += \
     aboutdialog.ui \

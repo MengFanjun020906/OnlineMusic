@@ -1,6 +1,6 @@
 #include "onlinemusicwidget.h"
 #include "ui_onlinemusicwidget.h"
-
+#include "playlist.h"
 #include "QPainter"
 
 OnlineMusicWidget::OnlineMusicWidget(QWidget *parent)
@@ -13,6 +13,7 @@ OnlineMusicWidget::OnlineMusicWidget(QWidget *parent)
     this->setFixedSize(this->geometry().size());
     //去掉窗口标题
     this->setWindowFlag(Qt::FramelessWindowHint);
+
 
 
     // 播放进度条控件美化
@@ -70,6 +71,39 @@ OnlineMusicWidget::OnlineMusicWidget(QWidget *parent)
                                                      "    margin-bottom: -4px;"
                                                      "    border-radius: 9px;"
                                                      "}");
+
+    //将光标焦点定位到搜索歌曲名称的控件
+    ui->lineEdit_InputSong->setFocus();
+
+    //初始化
+    NetworkAccessManager = new QNetworkAccessManager(this);
+
+    iPos=0;
+
+    //初始文本对象
+    docTextObject = ui->plainTextEdit_SongList->document();
+
+    //将控件设置为只读
+    ui->plainTextEdit_SongList->setReadOnly(true);
+
+    //初始化多媒体实例
+    p_PlayerObject=new QMediaPlayer(this);
+    //p_PlayerList = new
+    Playlist *p_PlayList = new Playlist(this);
+
+    //设置播放列表
+    //p_PlayerObject->setSource(p_PlayList);
+    //设置播放模式
+    p_PlayList->setPlaybackMode(Playlist::Loop);
+
+    //信号与槽处理如下
+    connect(p_PlayerObject,SIGNAL(positionChanged(qint64)),this,SLOT(HandleLCDNumberTimeChangeFunc(qint64)));
+    connect(p_PlayerObject,SIGNAL(positionChanged(qint64)),this,SLOT(HandlePositionChangeFunc(qint64)));
+    connect(p_PlayerObject,SIGNAL(positionChanged(qint64)),this,SLOT(HandleProgressTimeChangeFunc(qint64)));
+    connect(NetworkAccessManager,SIGNAL(finished(QNetworkReply*)),this,SLOT(HandleDataBackFunc(QNetworkReply*)));
+
+
+
 }
 
 OnlineMusicWidget::~OnlineMusicWidget()
@@ -201,5 +235,42 @@ void OnlineMusicWidget::on_pushButton_About_clicked()
 
 
     pAboutDialogs->exec();
+}
+
+//处理数据信息返回函数
+void OnlineMusicWidget::HandleDataBackFunc(QNetworkReply *pReply)
+{
+
+}
+//处理LCD控件时间变化
+void OnlineMusicWidget::HandleLCDNumberTimeChangeFunc(qint64 duration)
+{
+
+}
+// 处理进度条控件变化
+void OnlineMusicWidget::HandleProgressTimeChangeFunc(qint64 duration)
+{
+
+}
+// 处理播放位置变换
+void OnlineMusicWidget::HandlePositionChangeFunc(qint64 position)
+{
+
+}
+
+//处理播放歌曲
+void OnlineMusicWidget::HanglePlaySongFunc()
+{
+
+}
+//搜索歌曲名称实现
+void OnlineMusicWidget::on_pushButton_SearchSong_clicked()
+{
+    QString str1,str2;
+    str1=ui->lineEdit_InputSong->text();
+    QMessageBox::information(this,"Prompt",str1,QMessageBox::Yes);
+
+    str2="http://music.163.com/api/search/get/web?csrf_token=hlpretag=&hlposttag=&s={"+str1+"}&type=1&offset=0&total=true&limit=1"
+
 }
 
