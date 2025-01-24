@@ -109,7 +109,7 @@ public:
     QMediaPlayer *p_PlayerObject;//定义播放器对象
     //QMediaPlaylist *P_PlayerList; 定义播放器列表
     QMediaPlayer* player = new QMediaPlayer;
-
+    Playlist *p_PlayList = new Playlist(this);
 
 
 

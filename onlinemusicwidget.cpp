@@ -268,10 +268,43 @@ void OnlineMusicWidget::HandleDataBackFunc(QNetworkReply *pReply)
 
         if(strResultKeys.contains("songs"))
         {
-            QJsonArray jsonarray=resultobject["songs"].toArray();
+            QJsonArray array=resultobject["songs"].toArray();
+
+            //通过for循环查找歌曲当中的字段信息
+            for(auto isong:array)
+            {
+                QJsonObject jsonobject1 = isong.toObject();
+                //获取歌曲ID 歌名 歌手
+                I_MusicID = jsonobject1["id"].toInt();
+                StrMusicName = jsonobject1["name"].toString();
+
+
+                QStringList strkeys = jsonobject1.keys();
+
+                if(strkeys.contains("artists"))
+                {
+                    QJsonArray artitstsjsonarray= jsonobject1["artists"].toArray();
+                    for(auto js:artitstsjsonarray)
+                    {
+                        QJsonObject jsonobject2=js.toObject();
+                        StrSingerName = jsonobject2["name"].toString();
+                    }
+                }
+            }
         }
 
     }
+    // 生成歌曲 URL
+    QString url = QString("https://music.163.com/song/media/outer/url?id=%0").arg(I_MusicID);
+
+    // 创建一个 QVariantMap 并将歌曲 URL 存储在 "path" 键下
+    QVariantMap song;
+    song["path"] = url;
+    // 调用 appendSong 函数将歌曲添加到播放列表
+    p_PlayList->appendSong(song);
+
+    ui->plainTextEdit_SongList->appendPlainText(StrMusicName+"-"+StrSingerName);
+
 }
 //处理LCD控件时间变化
 void OnlineMusicWidget::HandleLCDNumberTimeChangeFunc(qint64 duration)
