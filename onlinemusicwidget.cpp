@@ -240,7 +240,38 @@ void OnlineMusicWidget::on_pushButton_About_clicked()
 //处理数据信息返回函数
 void OnlineMusicWidget::HandleDataBackFunc(QNetworkReply *pReply)
 {
+    //读取网络回款数据
+    QByteArySearchInfo = pReply->readAll();
 
+    QJsonParseError JSonPError;//定义错误信息对象
+
+    //将json文本转换为json文件对象
+    QJsonDocument JSonDoc_RecvData=QJsonDocument::fromJson(QByteArySearchInfo,&JSonPError);
+    if(JSonPError.error!=QJsonParseError::NoError)//判断是否符合规则
+    {
+        QMessageBox::critical(this,"Prompt","提示：获取歌曲json出错，请重新检查",QMessageBox::Yes);
+        return;
+    }
+    //QJsonObject使用函数object();
+    QJsonObject TotalJsonObject = JSonDoc_RecvData.object();
+
+    //列出json里面的所有key
+    QStringList strKeys=TotalJsonObject.keys();
+
+    if(strKeys.contains("result"))//与数据信息
+    {
+        //将带有result的数据内容提取之后转换为对象
+        QJsonObject resultobject=TotalJsonObject["result"].toObject();
+
+        //存储所有keys
+        QStringList strResultKeys=resultobject.keys();
+
+        if(strResultKeys.contains("songs"))
+        {
+            QJsonArray jsonarray=resultobject["songs"].toArray();
+        }
+
+    }
 }
 //处理LCD控件时间变化
 void OnlineMusicWidget::HandleLCDNumberTimeChangeFunc(qint64 duration)
@@ -268,9 +299,23 @@ void OnlineMusicWidget::on_pushButton_SearchSong_clicked()
 {
     QString str1,str2;
     str1=ui->lineEdit_InputSong->text();
-    QMessageBox::information(this,"Prompt",str1,QMessageBox::Yes);
 
-    str2="http://music.163.com/api/search/get/web?csrf_token=hlpretag=&hlposttag=&s={"+str1+"}&type=1&offset=0&total=true&limit=1"
+
+    str2="http://music.163.com/api/search/get/web?csrf_token=hlpretag=&hlposttag=&s={"+str1+"}&type=1&offset=0&total=true&limit=1";
+
+    //定义一个请求对象
+    QNetworkRequest networkRequest;
+    networkRequest.setUrl(str2);
+
+    //将请求格式设置给对应请求对象
+    networkRequest.setUrl(str2);
+    //使用QNetworkAccessManager类对应的API发送GET请求并获取响应数据
+
+
+
+
+
+    NetworkAccessManager->get(networkRequest);
 
 }
 

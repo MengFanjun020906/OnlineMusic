@@ -113,7 +113,7 @@ public:
 
 
 
-    QByteArray QBbyteArySearchInfo;//存储搜索数据信息
+    QByteArray QByteArySearchInfo;//存储搜索数据信息
     QString StrLoaclMusicPath;//导入本地音乐路径
 
     //歌曲ID
