@@ -26,6 +26,7 @@
 #include <QMouseEvent>
 #include <aboutdialog.h>
 #include <playlist.h>
+#include <QFileInfo>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -107,9 +108,10 @@ protected:
 
 public:
     QMediaPlayer *p_PlayerObject;//定义播放器对象
-    //QMediaPlaylist *P_PlayerList; 定义播放器列表
-    QMediaPlayer* player = new QMediaPlayer;
-    Playlist *p_PlayList = new Playlist(this);
+
+    QList<QUrl> playList; // 播放列表
+    //QMediaPlayer* player = new QMediaPlayer;
+    //Playlist *p_PlayList = new Playlist(this);
 
 
 
@@ -124,9 +126,10 @@ public:
     QTextDocument *docTextObject;//处理富文本内容
     QTextBlock *qRextLine;//处理文本块指针
 
-    int iPos; //标记
+    int iPlayFlags; //标记
 
     QNetworkAccessManager *NetworkAccessManager;
+
 
 
 
@@ -138,6 +141,7 @@ private:
     QPoint m_mousepoint;
     QPoint movepoint;
     bool mousepress;
+    int currentIndex = -1; // 当前播放的索引
 
 
 };
