@@ -90,9 +90,7 @@ OnlineMusicWidget::OnlineMusicWidget(QWidget *parent)
     //将控件设置为只读
     ui->plainTextEdit_SongList->setReadOnly(true);
 
-    //初始化多媒体实例
-    p_PlayerObject=new QMediaPlayer(this);
-    Playlist *p_PlayList = new Playlist(this);
+
 
 
 
@@ -100,7 +98,7 @@ OnlineMusicWidget::OnlineMusicWidget(QWidget *parent)
     //设置播放列表
     //p_PlayerObject->setSource(p_PlayList);
     //设置播放模式
-    p_PlayList->setPlaybackMode(Playlist::Loop);
+
 
     //信号与槽处理如下
     connect(p_PlayerObject,SIGNAL(positionChanged(qint64)),this,SLOT(HandleLCDNumberTimeChangeFunc(qint64)));
@@ -187,44 +185,39 @@ void OnlineMusicWidget::mouseReleaseEvent(QMouseEvent *et)
 //添加本地MP3歌曲
 void OnlineMusicWidget::on_pushButton_AddSong_clicked()
 {
-    // QString strCurrentPaths = QDir::homePath();
-    // QString strDlgTitle = "请选择MP3音乐文件";
-    // QString strFilters = "所有文件(*.*);;音频文件(*.mp3);;mp3文件(*.mp3)";
+    QString strCurrentPaths = QDir::homePath();
+    QString strDlgTitle = "请选择MP3音乐文件";
+    QString strFilters = "所有文件(*.*);;音频文件(*.mp3);;mp3文件(*.mp3)";
 
-    // QStringList strMp3FileList = QFileDialog::getOpenFileNames(this, strDlgTitle, strCurrentPaths, strFilters);
+    QStringList strMp3FileList = QFileDialog::getOpenFileNames(this, strDlgTitle, strCurrentPaths, strFilters);
 
-    // if (strMp3FileList.count() < 1) {
-    //     return;
+    if (strMp3FileList.count() < 1) {
+        return;
+    }
+    for (int i = 0; i < strMp3FileList.count(); i++) {
+        QString strFiles = strMp3FileList.at(i);
+        // 将音乐文件添加到播放列表
+        playList.append(strFiles);
+
+        QFileInfo qFileInfo(strFiles);
+
+        // 将歌曲添加到plainTextEdit控件
+        ui->plainTextEdit_SongList->appendPlainText(qFileInfo.fileName());
+    }
+
+
+
+    // // 添加完毕立刻播放
+    // if (p_PlayerObject->playbackState() != QMediaPlayer::PlayingState) {
+    //     p_PlayList->setCurrentIndex(0);
     // }
-    // for (int i = 0; i < strMp3FileList.count(); i++) {
-    //     QString strFiles = strMp3FileList.at(i);
-    //     QVariantMap LocalSong;
-    //     LocalSong["path"] = strFiles;
-    //     // 将音乐文件添加到播放列表
-    //     p_PlayList->appendSong(LocalSong);
+    // //p_PlayerObject->stop(); // 先停止播放器
+    // p_PlayerObject->play(); // 再开始播放
 
-    //     QFileInfo qFileInfo(strFiles);
+    if (currentIndex == -1 && !playList.isEmpty()) {
+        currentIndex = 0; // 如果当前没有播放的歌曲，设置索引为 0
+    }
 
-    //     // 将歌曲添加到plainTextEdit控件
-    //     ui->plainTextEdit_SongList->appendPlainText(qFileInfo.fileName());
-    // }
-
-    // // 检查播放列表是否为空
-    // if (p_PlayList->isEmpty()) {
-    //     qDebug() << "播放列表为空，无法播放";
-    //     return;
-    // }
-
-    // // // 添加完毕立刻播放
-    // // if (p_PlayerObject->playbackState() != QMediaPlayer::PlayingState) {
-    // //     p_PlayList->setCurrentIndex(0);
-    // // }
-    // // //p_PlayerObject->stop(); // 先停止播放器
-    // // p_PlayerObject->play(); // 再开始播放
-
-    // if (currentIndex == -1 && !p_PlayList->isEmpty()) {
-    //     currentIndex = 0; // 如果当前没有播放的歌曲，设置索引为 0
-    // }
     QStringList files = QFileDialog::getOpenFileNames(this, "选择音乐文件", QDir::homePath(), "音频文件 (*.mp3 *.wav)");
 
     for (const QString &file : files) {
@@ -237,9 +230,7 @@ void OnlineMusicWidget::on_pushButton_AddSong_clicked()
         }
     }
 
-    if (currentIndex == -1 && !playList.isEmpty()) {
-        currentIndex = 0; // 如果当前没有播放的歌曲，设置索引为 0
-    }
+
 }
 
 //播放歌曲
@@ -247,48 +238,73 @@ void OnlineMusicWidget::on_pushButton_PlaySong_clicked()
 {
 
 
-    QString filePath = "C:\\Users\\Administrator\\Music\\Closer-The Chainsmokers,Halsey.320.mp3";
-    if (QFile::exists(filePath)) {
-        p_PlayerObject->setSource(QUrl::fromLocalFile(filePath));
-        p_PlayerObject->play();
-    } else {
-        qDebug() << "文件不存在或路径无效：" << filePath;
+    // QString filePath = "C:\\Users\\Administrator\\Music\\Closer-The Chainsmokers,Halsey.320.mp3";
+    // if (QFile::exists(filePath)) {
+    //     p_PlayerObject->setSource(QUrl::fromLocalFile(filePath));
+    //     p_PlayerObject->play();
+    // } else {
+    //     qDebug() << "文件不存在或路径无效：" << filePath;
 
 
+    // }
+
+    qDebug() << "[Debug] 当前播放器状态：" << p_PlayerObject->playbackState();
+
+    // 1. 处理空播放列表
+    if (playList.isEmpty()) {
+        QMessageBox::warning(this, "错误", "播放列表为空");
+        return;
     }
 
-    // qDebug() << "播放列表内容：" << playList;
-    // qDebug() << "当前播放索引：" << currentIndex;
-    // qDebug() << "播放器状态：" << p_PlayerObject->playbackState();
+    // 2. 自动定位到第一首
+    if (currentIndex == -1) {
+        currentIndex = 0;
+    }
 
-    // if (playList.isEmpty()) {
-    //     qDebug() << "播放列表为空，无法播放";
-    //     return;
-    // }
+    // 3. 核心逻辑
+    switch (p_PlayerObject->playbackState()) {
+    case QMediaPlayer::StoppedState:  // 停止状态
+    case QMediaPlayer::PausedState:   // 暂停状态
+        // 只有源文件变化时才重新设置
+        if (p_PlayerObject->source() != playList[currentIndex]) {
+            p_PlayerObject->setSource(playList[currentIndex]);
+        }
+        p_PlayerObject->play();
+        //ui->pushButton_PlaySong->setText("暂停");
+        break;
 
-    // if (currentIndex == -1) {
-    //     currentIndex = 0; // 如果当前没有播放的歌曲，设置索引为 0
-    // }
+    case QMediaPlayer::PlayingState:  // 正在播放
+        p_PlayerObject->pause();
+        //ui->pushButton_PlaySong->setText("播放");
+        break;
 
-    // if (p_PlayerObject->playbackState() == QMediaPlayer::PlayingState) {
-    //     qDebug() << "播放器已经在播放中";
-    //     return;
-    // }
-
-    // p_PlayerObject->setSource(playList[currentIndex]);
-    // p_PlayerObject->play();
+    default:  // 无媒体或错误状态
+        p_PlayerObject->setSource(playList[currentIndex]);
+        p_PlayerObject->play();
+        //ui->pushButton_PlaySong->setText("暂停");
+        break;
+    }
 }
 
-
+//暂停播放
 void OnlineMusicWidget::on_pushButton_PauseSong_clicked()
 {
-
+    // 只有正在播放时才能暂停
+    if (p_PlayerObject->playbackState() == QMediaPlayer::PlayingState) {
+        p_PlayerObject->pause();
+        //ui->pushButton_PlaySong->setText("播放"); // 同步更新播放按钮状态
+        qDebug() << "音乐已暂停";
+    }
 }
 
-
+//停止播放
 void OnlineMusicWidget::on_pushButton_StopPlaySong_clicked()
 {
-
+    if (p_PlayerObject->playbackState() != QMediaPlayer::StoppedState) {
+        p_PlayerObject->stop();
+        ui->pushButton_PlaySong->setText("播放");  // 强制更新播放按钮状态
+        qDebug() << "音乐已停止";
+    }
 }
 
 
@@ -385,7 +401,7 @@ void OnlineMusicWidget::HandleDataBackFunc(QNetworkReply *pReply)
 
     }
     // 生成歌曲 URL
-    QString url = QString("https://music.163.com/song/media/outer/url?id=%0").arg(I_MusicID);
+    QString url = QString("https://music.163.com/song/media/outer/url?id=%0.mp3").arg(I_MusicID);
 
     // 创建一个 QVariantMap 并将歌曲 URL 存储在 "path" 键下
     //QVariantMap song;

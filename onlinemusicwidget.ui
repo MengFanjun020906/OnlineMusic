@@ -241,7 +241,7 @@ background-positio:center center;
       <number>0</number>
      </property>
     </widget>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -339,7 +339,7 @@ background-positio:center center;
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_PreviousSong">
+       <widget class="QPushButton" name="pushButton_StopPlaySong">
         <property name="cursor">
          <cursorShape>PointingHandCursor</cursorShape>
         </property>
@@ -368,7 +368,7 @@ background-positio:center center;
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_NextSong">
+       <widget class="QPushButton" name="pushButton_PreviousSong">
         <property name="cursor">
          <cursorShape>PointingHandCursor</cursorShape>
         </property>
@@ -428,7 +428,7 @@ background-positio:center center;
      </layout>
     </widget>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>770</x>
@@ -531,11 +531,9 @@ background-color:red;
      </item>
     </layout>
    </widget>
+   <zorder>layoutWidget</zorder>
    <zorder>groupBox_3</zorder>
    <zorder>groupBox_2</zorder>
-   <zorder>pushButton_About</zorder>
-   <zorder>pushButton_CUi</zorder>
-   <zorder>pushButton_Close</zorder>
    <zorder>groupBox</zorder>
    <zorder>horizontalSlider_PlayProgress</zorder>
   </widget>
