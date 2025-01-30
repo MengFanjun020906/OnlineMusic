@@ -248,6 +248,9 @@ void OnlineMusicWidget::on_pushButton_PlaySong_clicked()
 
     // }
 
+    qDebug() << "播放列表内容：" << playList;
+    qDebug() << "当前播放索引：" << currentIndex;
+    qDebug() << "播放器状态：" << p_PlayerObject->playbackState();
     qDebug() << "[Debug] 当前播放器状态：" << p_PlayerObject->playbackState();
 
     // 1. 处理空播放列表
@@ -302,7 +305,7 @@ void OnlineMusicWidget::on_pushButton_StopPlaySong_clicked()
 {
     if (p_PlayerObject->playbackState() != QMediaPlayer::StoppedState) {
         p_PlayerObject->stop();
-        ui->pushButton_PlaySong->setText("播放");  // 强制更新播放按钮状态
+        //ui->pushButton_PlaySong->setText("播放");  // 强制更新播放按钮状态
         qDebug() << "音乐已停止";
     }
 }
