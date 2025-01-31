@@ -310,30 +310,114 @@ void OnlineMusicWidget::on_pushButton_StopPlaySong_clicked()
     }
 }
 
-
+//播放上一曲
 void OnlineMusicWidget::on_pushButton_PreviousSong_clicked()
 {
 
+    if (playList.isEmpty()) {
+        QMessageBox::warning(this, "提示", "播放列表为空");
+        return;
+    }
+
+
+    // 计算新索引（支持循环）
+    currentIndex = (currentIndex - 1 + playList.size()) % playList.size();
+
+    // 设置新播放源
+    p_PlayerObject->setSource(playList[currentIndex]);
+
+    // 自动开始播放
+    p_PlayerObject->play();
+    qDebug() << "上一曲";
+
+
+
 }
 
-
+//播放下一曲
 void OnlineMusicWidget::on_pushButton_NextSong_clicked()
 {
+    // if (playList.isEmpty()) {
+    //     QMessageBox::warning(this, "提示", "播放列表为空");
+    //     return;
+    // }
 
+    // // 计算新索引（支持循环）
+    // currentIndex = (currentIndex + 1) % playList.size();
+
+    // // 设置新播放源
+    // p_PlayerObject->setSource(playList[currentIndex]);
+
+    // // 自动开始播放
+    // p_PlayerObject->play();
+    // qDebug() << "下一曲";
+    // qDebug() << currentIndex;
+    // // 更新播放按钮状态
+    // //ui->pushButton_PlaySong->setText("暂停");
 }
 
-
+//播放下一曲
 void OnlineMusicWidget::on_pushButton_NextSong_2_clicked()
 {
+    if (playList.isEmpty()) {
+        QMessageBox::warning(this, "提示", "播放列表为空");
+        return;
+    }
+
+    // 计算新索引（支持循环）
+    currentIndex = (currentIndex + 1) % playList.size();
+
+    // 设置新播放源
+    p_PlayerObject->setSource(playList[currentIndex]);
+
+    // 自动开始播放
+    p_PlayerObject->play();
+    qDebug() << "下一曲";
 
 }
 
 
 void OnlineMusicWidget::on_pushButton_SoundYesNo_clicked()
 {
+    QAudioOutput* audioOutput = p_PlayerObject->audioOutput();
+
+    if (isMuted) {
+        // 取消静音，恢复之前音量
+        audioOutput->setMuted(false);
+        audioOutput->setVolume(previousVolume);
+        ui->horizontalSlider_Volume->setValue(previousVolume * 100);
+        ui->pushButton_SoundYesNo->setIcon(QIcon(":/new/prefix1/Images/MSound.png"));
+        qDebug() << "取消静音，恢复音量到：" << previousVolume;
+    } else {
+        // 记录当前音量并静音
+        previousVolume = audioOutput->volume();
+        audioOutput->setMuted(true);
+        ui->pushButton_SoundYesNo->setIcon(QIcon(":/new/prefix1/Images/MNoSound.png"));
+        qDebug() << "静音，原音量：" << previousVolume;
+    }
+
+    isMuted = !isMuted;  // 切换状态
 
 }
 
+//音量控制
+void OnlineMusicWidget::on_horizontalSlider_Volume_valueChanged(int value)
+{
+    QAudioOutput* audioOutput = p_PlayerObject->audioOutput();
+
+    // 将滑块值（0-100）转换为浮点音量（0.0-1.0）
+    qreal volume = qBound(0.0, value / 100.0, 1.0);
+    audioOutput->setVolume(volume);
+
+    // 同步静音状态
+    if (volume > 0 && audioOutput->isMuted()) {
+        audioOutput->setMuted(false);
+        ui->pushButton_SoundYesNo->setIcon(QIcon(":/new/prefix1/Images/MSound.png"));
+        isMuted = false;
+    }
+
+
+}
 
 void OnlineMusicWidget::on_pushButton_About_clicked()
 {
@@ -458,4 +542,5 @@ void OnlineMusicWidget::on_pushButton_SearchSong_clicked()
     NetworkAccessManager->get(networkRequest);
 
 }
+
 

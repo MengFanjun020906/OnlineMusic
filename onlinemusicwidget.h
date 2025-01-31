@@ -83,6 +83,8 @@ private slots:
 
     void on_pushButton_SearchSong_clicked();
 
+    void on_horizontalSlider_Volume_valueChanged(int value);
+
 private:
     Ui::OnlineMusicWidget *ui;
 
@@ -142,6 +144,8 @@ private:
     QPoint movepoint;
     bool mousepress;
     int currentIndex = -1; // 当前播放的索引
+    bool isMuted = false;          // 静音状态标记
+    qreal previousVolume = 0.5;    // 静音前的音量值（默认50%）
 
 
 };
