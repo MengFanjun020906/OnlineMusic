@@ -164,6 +164,12 @@ background-color:rgba(255,255,255,150);</string>
       <height>22</height>
      </rect>
     </property>
+    <property name="singleStep">
+     <number>0</number>
+    </property>
+    <property name="value">
+     <number>0</number>
+    </property>
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
     </property>

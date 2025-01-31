@@ -103,9 +103,14 @@ OnlineMusicWidget::OnlineMusicWidget(QWidget *parent)
     //信号与槽处理如下
     connect(p_PlayerObject,SIGNAL(positionChanged(qint64)),this,SLOT(HandleLCDNumberTimeChangeFunc(qint64)));
     connect(p_PlayerObject,SIGNAL(positionChanged(qint64)),this,SLOT(HandlePositionChangeFunc(qint64)));
-    connect(p_PlayerObject,SIGNAL(positionChanged(qint64)),this,SLOT(HandleProgressTimeChangeFunc(qint64)));
+    connect(p_PlayerObject,SIGNAL(durationChanged(qint64)),this,SLOT(HandleProgressTimeChangeFunc(qint64)));
     connect(NetworkAccessManager,SIGNAL(finished(QNetworkReply*)),this,SLOT(HandleDataBackFunc(QNetworkReply*)));
-
+    // 在媒体加载完成时重置进度条
+    connect(p_PlayerObject, &QMediaPlayer::mediaStatusChanged, [this](QMediaPlayer::MediaStatus status){
+        if (status == QMediaPlayer::LoadedMedia) {
+            ui->horizontalSlider_PlayProgress->setValue(0);
+        }
+    });
 
 
 }
@@ -503,17 +508,32 @@ void OnlineMusicWidget::HandleDataBackFunc(QNetworkReply *pReply)
 //处理LCD控件时间变化
 void OnlineMusicWidget::HandleLCDNumberTimeChangeFunc(qint64 duration)
 {
-
+    int int_Second=duration/1000;
+    int int_Minute=int_Second/60;
+    int_Second=int_Second%60;
+    QString strSongTime=QString::asprintf("%d:%d",int_Minute,int_Second);
+    ui->lcdNumber_PlayTime->display(strSongTime);
 }
 // 处理进度条控件变化
 void OnlineMusicWidget::HandleProgressTimeChangeFunc(qint64 duration)
 {
+    //设置进度条最大值
+    ui->horizontalSlider_PlayProgress->setMaximum(duration);
+
+
+
 
 }
 // 处理播放位置变换
 void OnlineMusicWidget::HandlePositionChangeFunc(qint64 position)
-{
 
+{
+    if(ui->horizontalSlider_PlayProgress->isSliderDown())
+    {
+        return;
+    }
+    //设置滑块的位置
+    ui->horizontalSlider_PlayProgress->setSliderPosition(position);
 }
 
 //处理播放歌曲
@@ -543,4 +563,23 @@ void OnlineMusicWidget::on_pushButton_SearchSong_clicked()
 
 }
 
+
+
+void OnlineMusicWidget::on_horizontalSlider_PlayProgress_valueChanged(int value)
+{
+    // 添加状态检查
+    if (!ui->horizontalSlider_PlayProgress->isSliderDown() ||
+        p_PlayerObject->mediaStatus() != QMediaPlayer::LoadedMedia) {
+        return;
+    }
+
+    // 添加实际位置跳转
+    qDebug() << "尝试跳转到位置：" << value << "ms";
+    p_PlayerObject->setPosition(value);
+
+    // 如果处于停止状态需要启动播放
+    if (p_PlayerObject->playbackState() == QMediaPlayer::StoppedState) {
+        p_PlayerObject->play();
+    }
+}
 
